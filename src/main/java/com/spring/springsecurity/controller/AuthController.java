@@ -36,8 +36,7 @@ public class AuthController {
         // Encode the user's password
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         // Save the user to the database
-        User user1=userRepository.save(user);
-        return user1;
+        return userRepository.save(user);
     }
 
     @PostMapping("/login")
@@ -45,11 +44,8 @@ public class AuthController {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
         );
-
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        final String jwt = jwtUtil.generateToken(userDetails.getUsername());
-
-        return jwt;
+        return jwtUtil.generateToken(userDetails.getUsername());
     }
 
     @GetMapping("/hello")

@@ -52,7 +52,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 username = jwtUtil.extractUsername(jwt);
             } catch (Exception e) {
                 // Handle exceptions, such as malformed JWT
-                System.out.println("Error processing JWT: " + e.getMessage());
             }
         }
 
